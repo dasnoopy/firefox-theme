@@ -213,9 +213,20 @@ root {
 	background-color: #fafbfc !important;
 	border: 1px solid #24a0ed !important;
 	border-width: 1px !important;
-	border-radius: 3px !important;
+	border-radius: 4px !important;
 	box-shadow: none !important;
 }
+
+.urlbarView:not(.megabar) .urlbarView-row,
+.urlbarView.megabar .urlbarView-row-inner {
+border-radius: 0px !important;
+}
+
+/*------------------------------------------*/
+.urlbarView-body-inner {
+  border-top: none !important;
+}
+/*------------------------------------------*/
 
 
 #pageActionSeparator {
@@ -238,7 +249,7 @@ ar-button,
 	max-height: none !important; /* Otherwise it's limited to 4em */
 	height: 2.5em; /* Just some ridiculous size so you know it works. */
     color: #808080 !important;
-    background: #f4f4f4 !important;
+    background: #f3f3f3 !important;
 }
 
 /* link barra preferiti al centro e niente icone */
