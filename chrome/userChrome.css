@@ -258,7 +258,23 @@ ar-button,
 #personal-bookmarks, #PlacesToolbarItems {
 -moz-box-pack: center !important;
 }
+
+/*  custom bottom-border under the bookmarks toolbar */
+#navigator-toolbox { 
+	border: none !important;
+	border-bottom: 1px solid #d3d7cf !important;
+}
+
+/*  auto-hide the bookmarks toolbar */
+#PersonalToolbar {
+    visibility: collapse !important;
+}
+
+#navigator-toolbox:hover > #PersonalToolbar {
+    visibility: visible !important;
+}
  
+/* no icon on bookmar toolbar */
 .bookmark-item .toolbarbutton-icon {
     display: none !important;
 }
@@ -277,7 +293,6 @@ ar-button,
     border: none !important;
 }
 
-
 /* Custom separator on bookmark toolbar */
 #PlacesToolbarItems > toolbarseparator {
   -moz-appearance: none !important;
@@ -286,3 +301,5 @@ ar-button,
   margin-top: 6px !important;
   margin-bottom: 6px !important;
 }
+
+
