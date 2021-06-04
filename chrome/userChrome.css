@@ -1,10 +1,15 @@
-@namespace url("http://www.mozilla.org/keymaster/gatekeeper/there.is.only.xul");
+/*
+UserChrome.CSS for FF89
+ */
 
-  /* The button box must appear on top of the navigator-toolbox in order for
-   * click and hover mouse events to work properly for the button in the restored
-   * window state. Otherwise, elements in the navigator-toolbox, like the menubar,
-   * can swallow those events.
-   */
+* { 
+/* -------------------- 🎨 Customization 🎨 -------------------- */
+    --tab-corner-rounding: 6px;
+    --button-corner-rounding: 4px;
+    --menu-corner-rounding: 5px;
+    --menu-item-height: 30px;
+    --animation-speed: 0.15s;
+}
 
 root {
     --tabs-border: transparent !important;
@@ -14,6 +19,149 @@ root {
     --chrome-nav-bar-controls-border-color: transparent !important;
     /* border around url bar */
 }
+
+/*-----------  TABS height ----------- */
+:root {
+    --tab-min-height: 34px !important;
+}
+/*-------------------------------------*/
+
+@namespace url("http://www.mozilla.org/keymaster/gatekeeper/there.is.only.xul");
+
+/* Bottom corner rounding for tabs, Remove this section if your tab bottom corners look bad */
+tab[visuallyselected] .tab-background::before,
+tab[visuallyselected] .tab-background::after {
+    content: "" !important;
+    display: inline !important;
+    position: absolute !important;
+    width: var(--tab-corner-rounding) !important;
+    height: var(--tab-corner-rounding) !important;
+    bottom: -1px !important;
+    pointer-events: none !important;
+    background-color: transparent !important;
+    transition: var(--animation-speed) !important;
+}
+
+tab[visuallyselected] .tab-background::before {
+    border-bottom-right-radius: var(--tab-corner-rounding) !important;
+    transform: translateX(calc(-1 * var(--tab-corner-rounding))) !important;
+    box-shadow: 4px 4px 0px 4px var(--toolbar-bgcolor) !important;
+    transition: var(--animation-speed) !important;
+}
+
+tab[visuallyselected] .tab-background::after {
+    border-bottom-left-radius: var(--tab-corner-rounding) !important;
+    right: 0px !important;
+    transform: translateX(calc(var(--tab-corner-rounding) + 1px)) !important;
+    box-shadow: -4px 4px 0px 4px var(--toolbar-bgcolor) !important;
+    transition: var(--animation-speed) !important;
+}
+
+/* --------------------------------------------------------------------------------------- */
+
+
+scrollbox {
+    margin-top: 5px
+}
+
+/* This makes certain menus adapt to your toolbar text color. Can make menu text illegible in 
+some transparent themes, remove if needed. */
+panelview:not([extension]),
+.panel-arrowcontent {
+    background-color: var(--toolbar-bgcolor) !important;
+    color: var(--toolbar-color) !important;
+}
+/*-------------------------------------------------------------------*/
+
+/* -------------------- Transitions for some things -------------------- */
+toolbarbutton,
+.subviewbutton,
+stack, 
+.toolbarbutton-icon,
+vbox
+{
+    transition: background-color var(--animation-speed) !important;
+
+} 
+
+/* -------------------- Style tab bar -------------------- */
+
+.titlebar-spacer[type="pre-tabs"] {
+    border-inline-end: 0px !important;
+    width: 0px !important;
+}
+
+scrollbox[part="scrollbox"][flex="1"][orient="horizontal"] {
+    padding-left: 12px !important;
+}
+
+[sizemode="maximized"] [first-visible-tab] {
+    margin-left: -12px !important;
+}
+
+[sizemode="maximized"] [first-visible-tab] stack {
+    margin-left: 12px !important;
+}
+
+.tab-background, .tab-loading-burst  {
+    border-radius: var(--tab-corner-rounding) var(--tab-corner-rounding) 0px 0px !important;
+    margin: -1px !important;
+}
+
+tab:not(:active) .tab-background {
+    transition: background-color var(--animation-speed) !important;
+}
+
+:root[uidensity="compact"] {
+    --tab-min-height: 28px !important;
+}
+
+tab:not([selected]):hover .tab-background {
+    background-color: var(--toolbarbutton-hover-background) !important;
+}
+
+tab {
+    min-width: 1px !important;
+    clip-width: 1px !important;
+    padding-bottom: 1px !important;
+}
+
+.tab-line {
+    display: none !important;
+}
+
+tab:not([beforeselected-visible])::after {
+    margin-top: 4px !important;
+    margin-bottom: 4px !important;
+    transition: border-color var(--animation-speed), margin-top var(--animation-speed) !important;
+
+}
+
+tab[beforehovered]::after,
+tab:hover::after {
+    border-color: transparent !important;
+    margin-top: 20px !important;
+}
+
+#navigator-toolbox {
+    --tabs-border-color: transparent !important;
+}
+
+
+
+tab[visuallyselected] .tab-background {
+        box-shadow: 0px 3px 12px -5px black !important;
+}
+
+[last-visible-tab] {
+    margin-right: calc(var(--tab-corner-rounding) + 2px) !important; /* fix unexpected tab overflow */
+}
+
+.tabbrowser-tab {padding-inline: 1px !important;}
+
+/*-----------------------------------*/
+/* FROM USERCHROME.CSS <= verts. 88  */
+/*-----------------------------------*/
 
 /* custom ADD new tab */ 
 :-moz-any(#tabs-newtab-button,#new-tab-button,#alltabs-button) .toolbarbutton-icon{
@@ -37,6 +185,7 @@ root {
     padding:0px 8px !important;
 }
 
+
 /* custom icon for bookmarks button */
 #bookmarks-menu-button { list-style-image: url('bookmarks.svg') !important; }
 /* #home-button { list-style-image: url('home.svg') !important; } */
@@ -44,65 +193,6 @@ root {
 /* remove separator near system menu */
 #PanelUI-button{border-left:none !important;}
 
-/* small round back button 
-:root:not([uidensity=compact]) #back-button>.toolbarbutton-icon {
-    background-color: white !important;
-    border: 1px solid #a0a0a0 !important;
-	box-shadow: none !important;
-    transform: scale(.85, .85) !important;
-} */
-
-
-/* Custom  back button */
-#back-button>.toolbarbutton-icon {
-  transform: scale(.85, .85) !important;
-  animation: none !important;
-  border: none !important;
-  box-shadow: none !important;
-}
-
-#back-button:not(:hover),
-#back-button:not(:hover) > .toolbarbutton-icon {
-  background: none !important;
-}
-
-#back-button:hover,
-#back-button:hover > .toolbarbutton-icon {
-  border-radius: 2px !important;
-}
-
-/* TABS text color */
-.tabbrowser-tab .tab-label {
-  color: #a0a0a0 !important;
-}
-
-/* text color selected tab*/
-.tabbrowser-tab[selected] .tab-label {
-  color: #232323 !important;
-}
-
-/* TAB non selezionato */
-/* .tabbrowser-tab:not([selected]) {
-    box-shadow: 0px 24px 24px rgba(0, 0, 0, 0.30);
-} */
-
-.tabbrowser-tab::after,
-.tabbrowser-tab::before {
-    border: 0 0 1px 0 solid !important;
-    color: grey !important;
-    opacity: .2 !important;
-}
-
-/* ombreggiatura ai lati del tab attivo */
-.tabbrowser-tab[visuallyselected="true"] {
-    box-shadow: 0px 24px 24px rgba(0, 0, 0, 0.30);
-} 
-
-/* no colored line above active tab */
-.tab-line { display: none !important; }
-
-#navigator-toolbox {
---tabs-border-color: transparent !important;}
 
 /* no loading effect on tab */
 .tab-loading-burst { display: none !important; }
@@ -124,85 +214,20 @@ root {
 /* Custom TAB close button and hover effect */
 .tab-close-button {
     color: grey !important;
-        transform: scale(1, 1) !important;
+    transform: scale(1, 1) !important;
 }
 
 .tab-close-button:hover {
-	fill-opacity: 0 !important;
     transform: scale(1, 1) !important;
     color: black !important;
+    background-color: transparent !important;
 }
 
-/* hide reload/stop load page button 
-   F5 is the relative keyboard shortcut */
+/* hide reload/stop load page button - F5 is the relative keyboard shortcut */
 #reload-button, #stop-button {
   display: none !important;
 }
 
-/* hide back and forwared button 
-#back-button,
-#forward-button {
-    display: none !important;
-}*/
-
-/* Hide top line/border on active tab */
-.tabbrowser-tab[visuallyselected="true"] {
-    margin-top: -1px !important;
-}
-
-
-
-/*********************** URL bar ***********************************/
-
-/* REMOVE MEGABAR START
- * VERSION 1.0.3
- * CODE AT: http://userchrome.wesleybranton.com/megabar
- * RELEASE NOTES: http://userchrome.wesleybranton.com/notes/megabar */
-@-moz-document url(chrome://browser/content/browser.xhtml) {
-    /* DISABLE EXPANDING START */
-    #urlbar[breakout][breakout-extend] {
-        top: calc((var(--urlbar-toolbar-height) - var(--urlbar-height)) / 2) !important;
-        left: 0 !important;
-        width: 100% !important;
-    }
-    
-    #urlbar[breakout][breakout-extend] > #urlbar-input-container {
-        height: var(--urlbar-height) !important;
-        padding-block: 0 !important;
-        padding-inline: 0 !important;
-    }
-    
-    #urlbar[breakout][breakout-extend] > #urlbar-background {
-        animation-name: none !important;
-        box-shadow: 0 1px 4px rgba(0, 0, 0, .05) !important;
-    }
-    /* DISABLE EXPANDING END */
-    
-    /* REMOVE URL RESULT PADDING START */
-    .urlbarView {
-        margin-inline: 0 !important;
-        width: 100% !important;
-    }
-
-    .urlbarView-row {
-        padding-block: 0 !important;
-    }
-    /* REMOVE URL RESULT PADDING END */
-    
-    /* MOVE URL RESULT TYPE ICON TO LEFT START */
-    .urlbarView-type-icon {
-        min-width: 16px !important;
-        height: 16px !important;
-        margin-bottom: 0 !important;
-        margin-inline-start: 0 !important;
-    }
-    
-    .urlbarView-favicon {
-        margin-inline-start: 20px !important;
-    }
-    /* MOVE URL RESULT TYPE ICON TO LEFT END */
-}
-/* REMOVE MEGABAR END */
 
 /* Smaller search button paddings */
 .search-one-offs {
@@ -213,7 +238,7 @@ root {
 /* setting for searchbar on FF75 */
 #urlbar-background {
 	background-color: #fafbfc !important;
-	border: 1px solid #24a0ed !important;
+	border: 1px solid #4095ff !important;
 	border-width: 1px !important;
 	border-radius: 4px !important;
 	box-shadow: none !important;
@@ -259,47 +284,27 @@ ar-button,
 -moz-box-pack: center !important;
 }
 
-/*  custom bottom-border under the bookmarks toolbar */
-#navigator-toolbox { 
-	border: none !important;
-	border-bottom: 1px solid #d3d7cf !important;
-}
-
-/*  auto-hide the bookmarks toolbar */
-#PersonalToolbar {
-    visibility: collapse !important;
-}
-
-#navigator-toolbox:hover > #PersonalToolbar {
-    visibility: visible !important;
-}
- 
 /* no icon on bookmar toolbar */
 .bookmark-item .toolbarbutton-icon {
     display: none !important;
 }
  
 #PlacesToolbar .bookmark-item:hover { /* Hide Mouse-over Effect */
-    background: transparent !important;
+   background: transparent !important;
    color: black !important;
-}
-
-/* rimuovi spazio vuoto a sx in FF60 con CSD attivo  */
-.titlebar-spacer[type="pre-tabs"], .titlebar-spacer[type="post-tabs"] {  display:none !important; } 
-
-#tabbrowser-tabs {
-    margin-left: 8px !important;
-    overflow: visible !important;
-    border: none !important;
 }
 
 /* Custom separator on bookmark toolbar */
 #PlacesToolbarItems > toolbarseparator {
-  -moz-appearance: none !important;
-  width: 1px !important;
-  border-left: 1px dotted rgba(0,0,0,0.4) !important;
-  margin-top: 6px !important;
-  margin-bottom: 6px !important;
+  margin-top: 2px !important;
+  margin-bottom: 2px !important;
 }
+
+/*  custom bottom-border under the bookmarks toolbar */
+#navigator-toolbox { 
+	border: none !important;
+	border-bottom: 1px solid #d3d7cf !important;
+}
+
 
 
