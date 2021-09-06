@@ -1,5 +1,5 @@
 /*
-UserChrome.CSS for FF89
+UserChrome.CSS for FF91
  */
 
 * { 
@@ -22,7 +22,7 @@ root {
 
 /*-----------  TABS height ----------- */
 :root {
-    --tab-min-height: 34px !important;
+    --tab-min-height: 32px !important;
 }
 /*-------------------------------------*/
 
@@ -64,14 +64,6 @@ scrollbox {
     margin-top: 5px
 }
 
-/* This makes certain menus adapt to your toolbar text color. Can make menu text illegible in 
-some transparent themes, remove if needed. */
-panelview:not([extension]),
-.panel-arrowcontent {
-    background-color: var(--toolbar-bgcolor) !important;
-    color: var(--toolbar-color) !important;
-}
-/*-------------------------------------------------------------------*/
 
 /* -------------------- Transitions for some things -------------------- */
 toolbarbutton,
