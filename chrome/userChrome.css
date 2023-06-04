@@ -47,7 +47,12 @@ scrollbox[part="scrollbox"][flex="1"][orient="horizontal"] {
 
 /* custom icon for bookmarks button */
 #bookmarks-menu-button { list-style-image: url('bookmarks.svg') !important; }
-/* #home-button { list-style-image: url('home.svg') !important; } */
+#home-button { list-style-image: url('home.svg') !important; } 
+
+/* custom icon for add-ons button */
+#unified-extensions-button .toolbarbutton-icon {
+  list-style-image: url('extensions.svg') !important;
+}
 
 /* remove separator near system menu */
 #PanelUI-button{border-left:none !important;}
@@ -68,9 +73,10 @@ scrollbox[part="scrollbox"][flex="1"][orient="horizontal"] {
 
 /* bold font on selected active tab */
 #TabsToolbar .tabbrowser-tab[selected] {
-    color: #404142 !important;
+    color: #505152 !important;
     font-weight: bold !important;
 }
+
 /* while font color on inactive tab is "washed" */
 .tab-label-container { mask-image: none !important; }
 .tabbrowser-tab:not([selected]) label { color:#808080; }
