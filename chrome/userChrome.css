@@ -48,11 +48,14 @@ scrollbox[part="scrollbox"][flex="1"][orient="horizontal"] {
 /* custom icon for bookmarks button */
 #bookmarks-menu-button { list-style-image: url('bookmarks.svg') !important; }
 #home-button { list-style-image: url('home.svg') !important; } 
+#forward-button {list-style-image: url("forward.svg") !important;}
+#back-button {list-style-image: url("back.svg") !important;}
 
 /* custom icon for add-ons button */
 #unified-extensions-button .toolbarbutton-icon {
   list-style-image: url('extensions.svg') !important;
 }
+
 
 /* remove separator near system menu */
 #PanelUI-button{border-left:none !important;}
