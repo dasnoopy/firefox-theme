@@ -1,9 +1,10 @@
 
 :root {
-    --lwt-tab-line-color: #d0d1d2 !important;
+    --lwt-tab-line-color: #c0c1c2 !important;
     --tab-min-height: 36px !important;
+    --chrome-content-separator-color: var(--lwt-accent-color, var(--toolbox-non-lwt-fgcolor)) !important;
+    --tab-border-radius: 7px !important;  /* Tab roundness */
 }
-
 /* -------------------- Style tab bar -------------------- */
 
 .titlebar-spacer[type="pre-tabs"] {
@@ -38,12 +39,6 @@ scrollbox[part="scrollbox"][flex="1"][orient="horizontal"] {
     color: black !important;
     background-color: transparent !important; }
 
-/* con box shadow controllo il bordo della barra dei pulsanti e di ricerca */
-#nav-bar {
-    box-shadow:0px -1px 0px 0px rgba(0, 0, 0, 0.1) !important;
-    border:none !important;
-    padding:0px 8px !important;
-}
 
 /* custom icon for bookmarks button */
 #bookmarks-menu-button { list-style-image: url('bookmarks.svg') !important; }
@@ -69,10 +64,10 @@ scrollbox[part="scrollbox"][flex="1"][orient="horizontal"] {
 /* disable divider on the left-most tab */
 #tabbrowser-tabs{ border-inline-start: none !important }
 
-/* disable alltabs button */
+/* disable alltabs button  
 #alltabs-button {
     display: none !important;
-}
+} */
 
 /* bold font on selected active tab */
 #TabsToolbar .tabbrowser-tab[selected] {
@@ -127,14 +122,21 @@ scrollbox[part="scrollbox"][flex="1"][orient="horizontal"] {
 
 /* setting for searchbar on FF75 */
 #urlbar-background {
-	border-width: 1px solid !important;
-	border-radius: 4px !important;
+	border-width: 0px solid !important;
+	border-radius: 5px !important;
+    background-color: white; !important;
 	box-shadow: none !important;
+}
+
+#urlbar-background,
+#searchbar {
+  border: 0.8px solid var(--lwt-tab-line-color) !important;
+  border-radius: 5px !important;
 }
 
 .urlbarView:not(.megabar) .urlbarView-row,
 .urlbarView.megabar .urlbarView-row-inner {
-border-radius: 0px !important;
+border-radius: 5px !important;
 }
 
 /*------------------------------------------*/
@@ -149,7 +151,6 @@ border-radius: 0px !important;
 
 #pageActionButton,
 #pocket-button-box,
-ar-button,
 /* .autocomplete-history-dropmarker, */
 #identity-box,
 .urlbar-history-dropmarker.urlbar-icon.chromeclass-toolbar-additional,
@@ -161,6 +162,7 @@ ar-button,
 
 /* bookmarks toolbar */
 #PersonalToolbar {
+    background-color: transparent !important;
 	max-height: none !important; /* Otherwise it's limited to 4em */
 	height: 2.5em; /* Just some ridiculous size so you know it works. */
 }
@@ -186,8 +188,25 @@ ar-button,
   margin-bottom: 2px !important;
 }
 
+/* con box shadow controllo il bordo della barra dei pulsanti e di ricerca */
+#nav-bar {
+    box-shadow:0px 0px 0px 0px rgba(0, 0, 0, 0) !important;
+    border:none !important;
+    padding:0px 8px !important;
+}
+
+
 /*  custom bottom-border under the bookmarks toolbar */
 #navigator-toolbox { 
-	border: none !important;
-	border-bottom: 1px solid var(--lwt-tab-line-color, var(--lwt-tabs-border-color, currentColor)) !important;
+    border: none !important;
+    border-bottom: 1px solid var(--lwt-tab-line-color, var(--lwt-tabs-border-color, currentColor)) !important;
 }
+
+#navigator-toolbox #nav-bar {
+    background-color: transparent !important;
+    margin-bottom: -1px !important; /* remove navbar bottom 1px border */
+} 
+
+
+#TabsToolbar { padding-left: 5px !important;  }
+
