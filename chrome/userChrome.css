@@ -77,7 +77,7 @@ scrollbox[part="scrollbox"][flex="1"][orient="horizontal"] {
 
 /* while font color on inactive tab is "washed" */
 .tab-label-container { mask-image: none !important; }
-.tabbrowser-tab:not([selected]) label { color:#808080; }
+.tabbrowser-tab:not([selected]) label { color:#505152; }
 
 /* no loading effect on tab */
 .tab-loading-burst { display: none !important; }

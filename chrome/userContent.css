@@ -26,16 +26,15 @@
 
 }
 
-/* Custom new firefox search page */
+/* Custom new firefox search page 
 @-moz-document url("about:newtab"), url("about:home") {
-
 .search-wrapper .logo-and-wordmark .wordmark {
-    fill: #222222 !important; 
-    /*fill: #f57900 !important; */ }
+    fill: #222222 !important;  }
 body {
   background: url(new_tab.jpg) !important;
   background-size: cover !important;  }
 }
+*/
 
 /* custom about:addons */
 #header-inner {margin: 2px 0px -40px 4px !important}
