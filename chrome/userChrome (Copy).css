@@ -7,37 +7,6 @@
 }
 /* -------------------- Style tab bar -------------------- */
 
-
-/* Nova Rounding Adjustments */
-:root {
-    --border-radius-xsmall: 3px !important; /* Nova Default: 4px, Proton Default: 2px */
-    --border-radius-small: 4px !important; /* Nova Default: 8px, Proton Default: 4px */
-    --border-radius-medium: 5px !important; /* Nova Default: 12px, Proton Default: 8px */
-    --border-radius-large: 6px !important; /* Proton Default: 16px, [Undefined in Nova] */
-    --border-radius-xlarge: 9px !important; /* Nova Default: 24px, [Undefined in Proton] */
-
-    /*
-    --tab-border-radius: var(--border-radius-small) !important;
-
-    --button-border-radius: var(--border-radius-small) !important;
-    --toolbarbutton-border-radius: var(--border-radius-small) !important;
-
-    --card-border-radius: var(--border-radius-small) !important;
-    --card-border-radius-compact: var(--border-radius-small) !important;
-    --card-cover-image-border-radius: var(--border-radius-small) !important;
-
-    --input-text-border-radius: var(--border-radius-small) !important;
-
-    --menuitem-border-radius: var(--border-radius-small) !important;
-
-    --popup-border-radius: var(--border-radius-small) !important;
-
-    --panel-border-radius: var(--border-radius-small) !important;
-    --panel-menuitem-border-radius: var(--border-radius-small) !important;
-    */
-}
-
-
 .titlebar-spacer[type="pre-tabs"] {
     border-inline-end: 0px !important;
     width: 0px !important;
@@ -61,9 +30,15 @@ scrollbox[part="scrollbox"][flex="1"][orient="horizontal"] {
 
 /* custom ADD new tab */ 
 :-moz-any(#tabs-newtab-button,#new-tab-button,#alltabs-button) .toolbarbutton-icon{
-    transform: scale(0.7, 0.7) !important;
+    transform: scale(0.9, 0.9) !important;
     margin-top:1px !important;
+    color: darkgrey !important;
 }
+
+#tabbrowser-tabs #tabs-newtab-button:hover > .toolbarbutton-icon {
+    color: black !important;
+    background-color: transparent !important; }
+
 
 /* custom icon for bookmarks button */
 #bookmarks-menu-button { list-style-image: url('bookmarks.svg') !important; }
@@ -89,6 +64,10 @@ scrollbox[part="scrollbox"][flex="1"][orient="horizontal"] {
 /* disable divider on the left-most tab */
 #tabbrowser-tabs{ border-inline-start: none !important }
 
+/* disable alltabs button  
+#alltabs-button {
+    display: none !important;
+} */
 
 /* bold font on selected active tab */
 #TabsToolbar .tabbrowser-tab[selected] {
@@ -102,6 +81,10 @@ scrollbox[part="scrollbox"][flex="1"][orient="horizontal"] {
 
 /* no loading effect on tab */
 .tab-loading-burst { display: none !important; }
+
+/* Tabs with no icons 
+.tabbrowser-tab:not([busy="true"]):not([pinned]) .tab-icon-image
+{ display: none !important; } */
 
 
 /* Tabs with desaturated icons */
@@ -137,6 +120,30 @@ scrollbox[part="scrollbox"][flex="1"][orient="horizontal"] {
     padding-bottom: 7px !important;
 }
 
+/* setting for searchbar on FF75 */
+#urlbar-background {
+	border-width: 0px solid !important;
+	border-radius: 5px !important;
+    background-color: white; !important;
+	box-shadow: none !important;
+}
+
+#urlbar-background,
+#searchbar {
+  border: 0.8px solid var(--lwt-tab-line-color) !important;
+  border-radius: 5px !important;
+}
+
+.urlbarView:not(.megabar) .urlbarView-row,
+.urlbarView.megabar .urlbarView-row-inner {
+border-radius: 5px !important;
+}
+
+/*------------------------------------------*/
+.urlbarView-body-inner {
+  border-top: none !important;
+}
+/*------------------------------------------*/
 
 
 #pageActionSeparator {
@@ -203,3 +210,51 @@ scrollbox[part="scrollbox"][flex="1"][orient="horizontal"] {
 
 #TabsToolbar { padding-left: 5px !important;  }
 
+
+/*  custom titlebar button */
+/*.titlebar-button > .toolbarbutton-icon {
+    list-style-image: none !important;
+    appearance: none !important;
+}
+
+.titlebar-button > .toolbarbutton-icon {
+    width: 20px !important; 
+    height: 20px !important;
+    min-width: 20px !important;
+    min-height: 20px !important;
+    border-radius: 50% !important;
+    box-shadow: none !important;
+    transition: filter 0.1s ease; 
+}
+
+.titlebar-button {
+    padding: 0px 6px !important;
+    background: none !important;
+}
+
+
+
+.titlebar-close > .toolbarbutton-icon {
+    background-color: #ff5f57 !important;
+    border: 1px solid #e0443e !important;
+}
+
+.titlebar-min > .toolbarbutton-icon {
+    background-color: #febc2e !important;
+    border: 1px solid #dba520 !important;
+}
+
+.titlebar-max > .toolbarbutton-icon,
+.titlebar-restore > .toolbarbutton-icon {
+    background-color: #28c840 !important;
+    border: 1px solid #1aab29 !important;
+}
+
+.titlebar-button:hover > .toolbarbutton-icon {
+    filter: brightness(0.85) !important;
+}
+
+.titlebar-button:active > .toolbarbutton-icon {
+    filter: brightness(0.65) !important;
+}
+*/
